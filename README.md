@@ -22,7 +22,7 @@ if ($lock->acquire()) {
 
 
 // Waiting case. Acquire lock if it's free, otherwse block until it's free and then acquire
-if ($lock->acquire()) {
+if ($lock->acquire(F3\Flock\Lock::BLOCKING)) {
     // only one instance can reach here
     ...
     // do some job

@@ -17,7 +17,7 @@ Usage: race.php <pidfile> <processCount> <iterationsCount> <wait>
 <pidfile> - pid file name
 <processCount> - # of simultanious processes (int)
 <iterationsCount> - lock/unlock cicles per each process (int)
-<wait> - wait for unlock (0 or 1)
+<block> - blocking (0 - non-blocking, 1 - blocking)
 
 INFO;
 die(1);
@@ -26,15 +26,15 @@ die(1);
 $pidfile = $argv[1];
 $processCount = (int) $argv[2];
 $iterationsCount = (int) $argv[3];
-$wait = (bool) (int) $argv[4];
+$block = (bool) (int) $argv[4];
 
 
-$payload = function($file, $count, $wait = false) {
+$payload = function($file, $count, $block = false) {
     $pid = getmypid();
     try {
         for ($i = 0; $i < $count; $i++) {
             $lock = new Lock($file);
-            if ($lock->acquire($wait)) {
+            if ($lock->acquire($block)) {
                 echo "$pid acquire\n";
                 usleep(1);
                 if ($pid != $fileContents = @file_get_contents($file)) {
@@ -53,4 +53,4 @@ $payload = function($file, $count, $wait = false) {
 };
 
 $runner = new ForkRunner();
-$res = $runner->run($processCount, $payload, array($pidfile, $iterationsCount, $wait));
+$res = $runner->run($processCount, $payload, array($pidfile, $iterationsCount, $block));

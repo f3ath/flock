@@ -14,6 +14,9 @@ use F3\Debug\LastErrorException;
  */
 class Lock
 {
+    const BLOCKING = true;
+    const NON_BLOCKING = false;
+
     private $file;
     private $handler;
 
@@ -30,11 +33,11 @@ class Lock
     /**
      * Acquire lock
      *
-     * @param boolean $wait Wait until it frees and then acquire
+     * @param boolean $block Block and wait until it frees and then acquire
      * @return boolean Has be acquired?
      * @throws ErrorException if can not access the file
      */
-    public function acquire($wait = false)
+    public function acquire($block = self::NON_BLOCKING)
     {
         if ($this->handler)
         {
@@ -54,7 +57,7 @@ class Lock
             throw new LastErrorException(error_get_last());
         }
         $flag = LOCK_EX;
-        if (!$wait) {
+        if (!$block) {
             $flag |= LOCK_NB;
         }
         if (!flock($this->handler, $flag)) {
