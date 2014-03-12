@@ -1,7 +1,9 @@
 <?php
 namespace F3\Flock;
 
-class LockTest extends \PHPUnit_Framework_TestCase
+use PHPUnit_Framework_TestCase;
+
+class LockTest extends PHPUnit_Framework_TestCase
 {
     private $file;
 
@@ -41,7 +43,7 @@ class LockTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException F3\Debug\LastErrorException
+     * @expectedException ErrorException
      * @expectedExceptionMessage failed to open stream
      */
     public function testFileCanNotBeOpened()
@@ -68,18 +70,6 @@ class LockTest extends \PHPUnit_Framework_TestCase
     public function testReleaseWithNoAcquire()
     {
         $lockA = new Lock($this->file);
-        $lockA->release();
-    }
-
-    /**
-     * @expectedException LogicException
-     * @expectedExceptionMessage Lock is not acqiured
-     */
-    public function testDoubleRelease()
-    {
-        $lockA = new Lock($this->file);
-        $this->assertTrue($lockA->acquire());
-        $lockA->release();
         $lockA->release();
     }
 }

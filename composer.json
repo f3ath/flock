@@ -1,7 +1,7 @@
 {
     "name": "f3ath/flock",
-    "description": "Simple locking mechanism on top of flock()",
-    "keywords": ["lock", "flock", "locking"],
+    "description": "Simple locking mechanism on top of flock(). Ideal for cron jobs.",
+    "keywords": ["lock", "flock", "locking", "cron"],
     "homepage": "https://github.com/f3ath/Flock",
     "license": "MIT",
     "authors": [
@@ -12,8 +12,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "f3ath/debug": "0.*"
+        "php": ">=5.3.0"
     },
     "require-dev": {
         "f3ath/forkrunner": "0.*"

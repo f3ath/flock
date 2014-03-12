@@ -1,7 +1,9 @@
 <?php
 namespace F3\Flock;
 
-class LockRaceTest extends \PHPUnit_Framework_TestCase
+use PHPUnit_Framework_TestCase;
+
+class LockRaceTest extends PHPUnit_Framework_TestCase
 {
     private $file;
 
