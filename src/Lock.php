@@ -114,7 +114,7 @@ class Lock
      * @throws ErrorException if could not truncate lock file
      * @throws RuntimeException if could not release lock
      */
-    public function release()
+    public function release(Arr)
     {
         if (!$this->handler) {
             throw new LogicException('Lock is not acqiured');
