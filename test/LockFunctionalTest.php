@@ -1,9 +1,9 @@
 <?php
-namespace F3\Lock;
+namespace F3\Flock;
 
 use PHPUnit_Framework_TestCase;
 
-class FLockTest extends PHPUnit_Framework_TestCase
+class LockTest extends PHPUnit_Framework_TestCase
 {
     private $file;
 
@@ -21,8 +21,8 @@ class FLockTest extends PHPUnit_Framework_TestCase
     {
         // There is no file in the beginning
         $this->assertFalse(file_exists($this->file));
-        $lockA = new FLock($this->file);
-        $lockB = new FLock($this->file);
+        $lockA = new Lock($this->file);
+        $lockB = new Lock($this->file);
         // A can acquire the lock
         $this->assertTrue($lockA->acquire());
         // My PID is written
@@ -48,7 +48,7 @@ class FLockTest extends PHPUnit_Framework_TestCase
      */
     public function testFileCanNotBeOpened()
     {
-        $lockA = new FLock(sys_get_temp_dir());
+        $lockA = new Lock(sys_get_temp_dir());
         $lockA->acquire();
     }
 
@@ -58,7 +58,7 @@ class FLockTest extends PHPUnit_Framework_TestCase
      */
     public function testDoubleAcquire()
     {
-        $lockA = new FLock($this->file);
+        $lockA = new Lock($this->file);
         $this->assertTrue($lockA->acquire());
         $lockA->acquire();
     }
@@ -69,7 +69,7 @@ class FLockTest extends PHPUnit_Framework_TestCase
      */
     public function testReleaseWithNoAcquire()
     {
-        $lockA = new FLock($this->file);
+        $lockA = new Lock($this->file);
         $lockA->release();
     }
 }

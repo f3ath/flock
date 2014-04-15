@@ -1,6 +1,6 @@
 {
     "name": "f3ath/flock",
-    "description": "Simple locking mechanisms. Ideal for CRON jobs etc.",
+    "description": "Simple locking mechanism on top of flock(). Ideal for cron jobs.",
     "keywords": ["lock", "flock", "locking", "cron"],
     "homepage": "https://github.com/f3ath/Flock",
     "license": "MIT",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "F3\\Lock\\": "src/"
+            "F3\\Flock\\": "src/"
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace F3\Lock;
+namespace F3\Flock;
 
 use RuntimeException;
 use LogicException;
@@ -8,11 +8,11 @@ use ErrorException;
 /**
  * Process lock
  *
- * @package F3\Lock
+ * @package F3\Flock
  * @version $id$
  * @author Alexey Karapetov <karapetov@gmail.com>
  */
-class FLock
+class Lock
 {
     const BLOCKING = true;
     const NON_BLOCKING = false;

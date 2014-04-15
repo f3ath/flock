@@ -1,14 +1,13 @@
 Flock
 =====
 
-Simple locking mechanisms
+Simple locking mechanism on top of flock()
 
 #Usage
 
-##FLock
 ```php
 $file = '/tmp/my_lock.pid';
-$lock = new F3\Lock\FLock($file);
+$lock = new F3\Flock\Lock($file);
 
 // Non-blocking case. Acquire lock if it's free, otherwse exit immediately
 if ($lock->acquire()) {
@@ -23,7 +22,7 @@ if ($lock->acquire()) {
 
 
 // Waiting case. Acquire lock if it's free, otherwse block until it's free and then acquire
-if ($lock->acquire(F3\Lock\FLock::BLOCKING)) {
+if ($lock->acquire(F3\Flock\Lock::BLOCKING)) {
     // only one instance can reach here
     ...
     // do some job
