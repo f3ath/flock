@@ -1,11 +1,11 @@
 <?php
 /**
- *  Race condition test for F3\Flock\Lock
+ *  Race condition test for F3\Lock\FLock
  */
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
 
-use F3\Flock\Lock;
+use F3\Lock\FLock;
 use F3\ForkRunner\ForkRunner;
 
 if ($argc < 5) {
@@ -33,7 +33,7 @@ $payload = function($file, $count, $block = false) {
     $pid = getmypid();
     try {
         for ($i = 0; $i < $count; $i++) {
-            $lock = new Lock($file);
+            $lock = new FLock($file);
             if ($lock->acquire($block)) {
                 echo "$pid acquire\n";
                 usleep(1);

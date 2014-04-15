@@ -1,5 +1,5 @@
 <?php
-namespace F3\Flock;
+namespace F3\Lock;
 
 use PHPUnit_Framework_TestCase;
 
@@ -21,7 +21,7 @@ class LockRaceTest extends PHPUnit_Framework_TestCase
     {
         $threads = 100;
         $iterations = 50;
-        exec('php ' . __DIR__ . "/race.php {$this->file} $threads $iterations 1", $output);
+        exec('php ' . __DIR__ . "/flock.race.helper.php {$this->file} $threads $iterations 1", $output);
         $prevAction = 'release';
         $prevPid = 0;
         foreach ($output as $line) {
@@ -41,7 +41,7 @@ class LockRaceTest extends PHPUnit_Framework_TestCase
     {
         $threads = 100;
         $iterations = 100;
-        exec('php ' . __DIR__ . "/race.php {$this->file} $threads $iterations 0", $output);
+        exec('php ' . __DIR__ . "/flock.race.helper.php {$this->file} $threads $iterations 0", $output);
         $prevAction = 'release';
         $prevPid = 0;
         foreach ($output as $line) {
