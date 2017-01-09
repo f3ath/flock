@@ -19,7 +19,7 @@ class Lock
     /**
      * __construct
      *
-     * @param string $file PID flie name
+     * @param string $file PID file name
      */
     public function __construct($file)
     {
