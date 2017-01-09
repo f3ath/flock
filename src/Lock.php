@@ -48,7 +48,7 @@ class Lock
     public function acquire($block = self::NON_BLOCKING)
     {
         if ($this->handler) {
-            throw new \LogicException('Lock is already acqiured');
+            throw new \LogicException('Lock is already acquired');
         }
         // For flock() to work properly, the file must exist at the moment we do fopen()
         // So we create it first. touch()'s return value can be ignored, as the possible

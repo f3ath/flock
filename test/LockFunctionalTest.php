@@ -54,7 +54,7 @@ class LockTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Lock is already acqiured
+     * @expectedExceptionMessage Lock is already acquired
      */
     public function testDoubleAcquire()
     {
