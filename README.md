@@ -1,4 +1,4 @@
-[![Travis Build](https://travis-ci.org/f3ath/flock.svg?branch=master)](https://travis-ci.org/f3ath/simpleuber)
+[![Travis Build](https://travis-ci.org/f3ath/flock.svg?branch=master)](https://travis-ci.org/f3ath/flock)
 
 #Flock. Simple locking mechanism on top of flock()
 
