@@ -20,7 +20,7 @@ class LockRaceTest extends PHPUnit_Framework_TestCase
     public function testBlocking()
     {
         $threads = 100;
-        $iterations = 50;
+        $iterations = 500;
         exec('php ' . __DIR__ . "/race.php {$this->file} $threads $iterations 1", $output);
         $prevAction = 'release';
         $prevPid = 0;
@@ -40,7 +40,7 @@ class LockRaceTest extends PHPUnit_Framework_TestCase
     public function testNonBlocking()
     {
         $threads = 100;
-        $iterations = 100;
+        $iterations = 500;
         exec('php ' . __DIR__ . "/race.php {$this->file} $threads $iterations 0", $output);
         $prevAction = 'release';
         $prevPid = 0;

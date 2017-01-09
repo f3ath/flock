@@ -1,10 +1,6 @@
 <?php
 namespace F3\Flock;
 
-use RuntimeException;
-use LogicException;
-use ErrorException;
-
 /**
  * Process lock
  *
@@ -47,12 +43,12 @@ class Lock
      *
      * @param boolean $block Block and wait until it frees and then acquire
      * @return boolean Has be acquired?
-     * @throws ErrorException if can not access the file
+     * @throws \ErrorException if can not access the file
      */
     public function acquire($block = self::NON_BLOCKING)
     {
         if ($this->handler) {
-            throw new LogicException('Lock is already acqiured');
+            throw new \LogicException('Lock is already acqiured');
         }
         // For flock() to work properly, the file must exist at the moment we do fopen()
         // So we create it first. touch()'s return value can be ignored, as the possible
@@ -82,15 +78,25 @@ class Lock
     }
 
     /**
-     * Throw ErrorException containing information from error_get_last()
+     * Release the lock
      *
      * @return void
-     * @throws ErrorException
+     * @throws \LogicException if lock has not been acquired
+     * @throws \ErrorException if could not truncate lock file
+     * @throws \RuntimeException if could not release lock
      */
-    private function throwLastErrorException()
+    public function release()
     {
-        $error = error_get_last();
-        throw new ErrorException($error['message'], $error['type'], $error['type'], $error['file'], $error['line']);
+        if (!$this->handler) {
+            throw new \LogicException('Lock is not acquired');
+        }
+        if (!@ftruncate($this->handler, 0)) {
+            $this->throwLastErrorException();
+        }
+        if (!flock($this->handler, LOCK_UN)) {
+            throw new \RuntimeException(sprintf('Unable to release lock on %s', $this->file));
+        }
+        $this->closeFile();
     }
 
     /**
@@ -106,25 +112,16 @@ class Lock
         $this->handler = null;
     }
 
+
     /**
-     * Release the lock
+     * Throw ErrorException containing information from error_get_last()
      *
      * @return void
-     * @throws LogicException if lock has not been acquired
-     * @throws ErrorException if could not truncate lock file
-     * @throws RuntimeException if could not release lock
+     * @throws \ErrorException
      */
-    public function release()
+    private function throwLastErrorException()
     {
-        if (!$this->handler) {
-            throw new LogicException('Lock is not acqiured');
-        }
-        if (!@ftruncate($this->handler, 0)) {
-            $this->throwLastErrorException();
-        }
-        if (!flock($this->handler, LOCK_UN)) {
-            throw new RuntimeException(sprintf('Unable to release lock on %s', $this->file));
-        }
-        $this->closeFile();
+        $error = error_get_last();
+        throw new \ErrorException($error['message'], $error['type'], $error['type'], $error['file'], $error['line']);
     }
 }

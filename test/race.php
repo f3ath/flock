@@ -1,9 +1,9 @@
 <?php
 /**
- *  Race condition test for F3\Flock\Lock
+ *  Race condition test
  */
 
-require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 use F3\Flock\Lock;
 use F3\ForkRunner\ForkRunner;
@@ -20,7 +20,7 @@ Usage: race.php <pidfile> <processCount> <iterationsCount> <wait>
 <block> - blocking (0 - non-blocking, 1 - blocking)
 
 INFO;
-die(1);
+    die(1);
 }
 
 $pidfile = $argv[1];
@@ -28,8 +28,7 @@ $processCount = (int) $argv[2];
 $iterationsCount = (int) $argv[3];
 $block = (bool) (int) $argv[4];
 
-
-$payload = function($file, $count, $block = false) {
+$payload = function ($file, $count, $block = false) {
     $pid = getmypid();
     try {
         for ($i = 0; $i < $count; $i++) {
@@ -53,4 +52,4 @@ $payload = function($file, $count, $block = false) {
 };
 
 $runner = new ForkRunner();
-$res = $runner->run($processCount, $payload, array($pidfile, $iterationsCount, $block));
+$res = $runner->run($processCount, $payload, [$pidfile, $iterationsCount, $block]);

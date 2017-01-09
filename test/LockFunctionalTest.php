@@ -43,7 +43,7 @@ class LockTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ErrorException
+     * @expectedException \ErrorException
      * @expectedExceptionMessage failed to open stream
      */
     public function testFileCanNotBeOpened()
@@ -53,7 +53,7 @@ class LockTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException LogicException
+     * @expectedException \LogicException
      * @expectedExceptionMessage Lock is already acqiured
      */
     public function testDoubleAcquire()
@@ -64,8 +64,8 @@ class LockTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException LogicException
-     * @expectedExceptionMessage Lock is not acqiured
+     * @expectedException \LogicException
+     * @expectedExceptionMessage Lock is not acquired
      */
     public function testReleaseWithNoAcquire()
     {

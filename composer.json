@@ -1,25 +1,32 @@
 {
-    "name": "f3ath/flock",
-    "description": "Simple locking mechanism on top of flock(). Ideal for cron jobs.",
-    "keywords": ["lock", "flock", "locking", "cron"],
-    "homepage": "https://github.com/f3ath/Flock",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Alexey Karapetov",
-            "email": "karapetov@gmail.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.0"
-    },
-    "require-dev": {
-        "f3ath/forkrunner": "0.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "F3\\Flock\\": "src/"
-        }
+  "name": "f3ath/flock",
+  "description": "Simple locking mechanism on top of flock(). Ideal for cron jobs.",
+  "keywords": [
+    "lock",
+    "flock",
+    "locking",
+    "cron"
+  ],
+  "homepage": "https://github.com/f3ath/Flock",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexey Karapetov",
+      "email": "karapetov@gmail.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7",
+    "squizlabs/php_codesniffer": "^2.7",
+    "f3ath/forkrunner": "0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "F3\\Flock\\": "src/"
+    }
+  }
 }
