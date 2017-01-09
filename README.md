@@ -1,9 +1,8 @@
-Flock
-=====
+[![Travis Build](https://travis-ci.org/f3ath/flock.svg?branch=master)](https://travis-ci.org/f3ath/simpleuber)
 
-Simple locking mechanism on top of flock()
+#Flock. Simple locking mechanism on top of flock()
 
-#Usage
+##Usage
 
 ```php
 $file = '/tmp/my_lock.pid';
