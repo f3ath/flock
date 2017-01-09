@@ -22,8 +22,7 @@
   "require-dev": {
     "phpunit/phpunit": "^5.7",
     "squizlabs/php_codesniffer": "^2.7",
-    "f3ath/forkrunner": "0.*",
-    "f3ath/git-changelog": "^1.0"
+    "f3ath/forkrunner": "0.*"
   },
   "autoload": {
     "psr-4": {
