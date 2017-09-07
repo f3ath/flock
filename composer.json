@@ -1,6 +1,6 @@
 {
   "name": "f3ath/flock",
-  "description": "Simple locking mechanism on top of flock(). Ideal for cron jobs.",
+  "description": "Simple locking mechanism on top of flock()",
   "keywords": [
     "lock",
     "flock",
