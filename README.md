@@ -2,7 +2,7 @@
 
 # Flock. Simple locking mechanism on top of flock()
 
-##vUsage
+## Usage
 
 ```php
 $file = '/tmp/my_lock.pid';
