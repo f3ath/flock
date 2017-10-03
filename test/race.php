@@ -52,4 +52,4 @@ $payload = function ($file, $count, $block = false) {
 };
 
 $runner = new ForkRunner();
-$res = $runner->run($processCount, $payload, [$pidfile, $iterationsCount, $block]);
+$res = $runner->run($payload, array_fill(0, $processCount, [$pidfile, $iterationsCount, $block]));
